@@ -1,5 +1,5 @@
 import { StyledButton, StyledInput } from "components/Phonebook/Phonebook.styled"
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StyledContactForm } from "./ContactForm.styled";
 
 export const ContactForm = (onAddContact) => {
@@ -8,14 +8,12 @@ export const ContactForm = (onAddContact) => {
 
   const handleChangeInput = e => {
     const { target } = e;
-    const { value } = target;
+    const { name, value } = target;
     setName(value);
-    // setNumber(value);
   }
-
   const handleSubmitAddUser = (e) => {
     e.preventDefault();
-    onAddContact(name, number);
+    onAddContact();
     setName('');
     setNumber('')
   }

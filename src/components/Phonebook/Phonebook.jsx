@@ -16,15 +16,11 @@ export const Phonebook = () => {
 
   const handleAddUser = ({ name, number }) => {
     const isExist = contacts.some((item) => item.name === name)
-    // console.log();
     if (isExist) {
       alert('ALERT')
       return
     }
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, { id: nanoid(), name, number }]
-    }
-    ))
+    setContacts(prevState => [...prevState, { id: nanoid(), name, number }])
   }
 
   const handleSetFilter = (e) => {
@@ -46,16 +42,13 @@ export const Phonebook = () => {
     }
   }, [])
 
-  useEffect((prevState) => {
-    if (prevState.length !== contacts.length) {
-      window.localStorage.setItem('CONTACTS_DATA', JSON.stringify(contacts))
-    }
+  useEffect(() => {
+    window.localStorage.setItem('CONTACTS_DATA', JSON.stringify(contacts))
   }, [contacts])
 
   useEffect(() => {
-    return window.localStorage.setItem('CONTACTS_DATA', JSON.stringify(contacts))
+    return () => { window.localStorage.setItem('CONTACTS_DATA', JSON.stringify(contacts)) }
   }, [contacts])
-
 
   return (
     <StyledWrapper >
