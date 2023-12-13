@@ -46,9 +46,6 @@ export const Phonebook = () => {
     window.localStorage.setItem('CONTACTS_DATA', JSON.stringify(contacts))
   }, [contacts])
 
-  useEffect(() => {
-    return () => { window.localStorage.setItem('CONTACTS_DATA', JSON.stringify(contacts)) }
-  }, [contacts])
 
   return (
     <StyledWrapper >
