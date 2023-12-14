@@ -32,7 +32,7 @@ export const Phonebook = () => {
   }
 
   const handleDeleteUser = (id) => {
-    setContacts(contacts.filter(contact => contact.id !== id))
+    setContacts(prevState => prevState.filter(contact => contact.id !== id))
   }
 
   useEffect(() => {
